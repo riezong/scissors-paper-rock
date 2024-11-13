@@ -8,7 +8,16 @@
 <body>
     
     <script>
-        console.log("Hello World");
+        // console.log("Hello World");
+
+        function getComputerChoice() {
+            let computerChoice;
+            let x = Math.random();
+            let result = x < .3 ? computerChoice = "scissors" : x > .6 ? computerChoice = "rock" : computerChoice = "paper";
+            return computerChoice;
+        }
+
+        console.log(getComputerChoice());
     </script>
 
 </body>
