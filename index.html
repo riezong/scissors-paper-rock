@@ -31,6 +31,14 @@
         // console.log(getComputerChoice);
         // console.log(getHumanChoice);
 
+        function incrementHumanScore() {
+            humanScore = humanScore + 1;
+        }
+
+        function incrementComputerScore() {
+            computerScore = computerScore + 1;
+        }
+
         // function to play a single round
         function playRound(humanChoice, computerChoice) {
             humanChoice = humanChoice.toUpperCase();
@@ -39,22 +47,22 @@
 
             if (humanChoice == "SCISSORS" && computerChoice == "PAPER") { // SCISSORS WIN
                 console.log("YOU WIN!");
-                humanScore = humanScore + 1;
+                incrementHumanScore();
             } else if (humanChoice == "SCISSORS" && computerChoice == "ROCK") { // SCISSORS LOSE
                 console.log("Better luck next time!");
-                computerScore = computerScore + 1;
+                incrementComputerScore();
             } else if (humanChoice == "PAPER" && computerChoice == "ROCK") { // PAPER WIN
                 console.log("YOU WIN!");
-                humanScore = humanScore + 1;
+                incrementHumanScore();
             } else if (humanChoice == "PAPER" && computerChoice == "SCISSORS") { // PAPER LOSE
                 console.log("Better luck next time!");
-                computerScore = computerScore + 1;
+                incrementComputerScore();
             } else if (humanChoice == "ROCK" && computerChoice == "SCISSORS") { // ROCK WIN
                 console.log("YOU WIN!");
-                humanScore = humanScore + 1;
+                incrementHumanScore();
             } else if (humanChoice == "ROCK" && computerChoice == "PAPER") { // ROCK LOSE
                 console.log("Better luck next time!");
-                computerScore = computerScore + 1;
+                incrementComputerScore();
             } else { // DRAW
                 console.log("It's a draw.");
             }
@@ -66,8 +74,18 @@
         let humanSelection = getHumanChoice();
         let computerSelection = getComputerChoice()
 
-        playRound(humanSelection, computerSelection);
-        // console.log(playRound());
+        function playGame(rounds = 5) {
+            playRound(humanSelection, computerSelection);
+            playRound(humanSelection, computerSelection);
+            playRound(humanSelection, computerSelection);
+            playRound(humanSelection, computerSelection);
+            playRound(humanSelection, computerSelection);
+        }
+        
+        playGame();
+        // playRound(humanSelection, computerSelection);
+
+        
 
     </script>
 
