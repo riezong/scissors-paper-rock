@@ -10,17 +10,63 @@
     <script>
         // console.log("Hello World");
 
+        // get computer choice (random)
         function getComputerChoice() {
-            let computerChoice;
+            let genComputerChoice;
             let x = Math.random();
-            let result = x < .3 ? computerChoice = "scissors" : x > .6 ? computerChoice = "rock" : computerChoice = "paper";
-            return computerChoice;
+            let result = x < .3 ? genComputerChoice = "scissors" : x > .6 ? genComputerChoice = "rock" : genComputerChoice = "paper";
+            return String(genComputerChoice);
         }
 
-        let getHumanChoice = prompt("Scissors, paper rock", "scissors");
+        // get human choice (prompt)
+        function getHumanChoice() {
+            let inputChoice = prompt("Scissors, paper rock", "scissors");
+            return String(inputChoice);
+        }
 
-        console.log(getComputerChoice());
-        console.log(getHumanChoice);
+        // console.log(getComputerChoice);
+        // console.log(getHumanChoice);
+
+        // player scores
+        let humanScore = 0;
+        let computerScore = 0;
+
+        // function to play a single round
+        function playRound(humanChoice, computerChoice) {
+            humanChoice = humanChoice.toUpperCase();
+            computerChoice = computerChoice.toUpperCase();
+            console.log( "P1:" + humanChoice + " : " + "CPU:" + computerChoice );
+
+            // Scissors > Paper > Rock > Scissors
+            // if (humanChoice == "SCISSORS") {
+            //     let result = computerChoice == "SCISSORS" ? console.log("It's a draw!") : computerChoice == "PAPER" ? console.log("You win!") : console.log("Better luck next time!");
+            // } else if (humanChoice == "PAPER") {
+            //     let result = computerChoice == "SCISSORS" ? console.log("Better luck next time!") : computerChoice == "PAPER" ? console.log("It's a draw!") : console.log("You win!");
+            // } else { // P1 plays rock
+            //     let result = computerChoice == "SCISSORS" ? console.log("You win!") : computerChoice == "PAPER" ? console.log("Better luck next time!") : console.log("It's a draw!");
+            // }
+
+            if (humanChoice == "SCISSORS" && computerChoice == "PAPER") {
+                console.log("YOU WIN!");
+            } else if (humanChoice == "SCISSORS" && computerChoice == "ROCK") {
+                console.log("Better luck next time!");
+            } else if (humanChoice == "PAPER" && computerChoice == "ROCK") {
+                console.log("YOU WIN!");
+            } else if (humanChoice == "PAPER" && computerChoice == "SCISSORS") {
+                console.log("Better luck next time!");
+            } else if (humanChoice == "ROCK" && computerChoice == "SCISSORS") {
+                console.log("YOU WIN!");
+            } else if (humanChoice == "ROCK" && computerChoice == "PAPER") {
+                console.log("Better luck next time!");
+            } else {
+                console.log("It's a draw.");
+            }
+
+        }
+
+        playRound(getHumanChoice(), getComputerChoice());
+        // console.log(playRound());
+
     </script>
 
 </body>
