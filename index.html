@@ -71,17 +71,25 @@
             console.log(humanScore, computerScore);
         }
 
-        let humanSelection = getHumanChoice();
-        let computerSelection = getComputerChoice()
+        let humanSelection;
+        let computerSelection;
 
         function playGame(rounds = 5) {
-            playRound(humanSelection, computerSelection);
-            playRound(humanSelection, computerSelection);
-            playRound(humanSelection, computerSelection);
-            playRound(humanSelection, computerSelection);
+        //   humanSelection = getHumanChoice();
+        //   computerSelection = getComputerChoice();
+        //   console.log(humanSelection, computerSelection);
+        //   playRound(humanSelection, computerSelection);
+
+        let firstTo = 5;
+
+        while (humanScore < firstTo && computerScore < firstTo) {
+            humanSelection = getHumanChoice();
+            computerSelection = getComputerChoice();
+            console.log(humanSelection, computerSelection);
             playRound(humanSelection, computerSelection);
         }
-        
+        }
+
         playGame();
         // playRound(humanSelection, computerSelection);
 
