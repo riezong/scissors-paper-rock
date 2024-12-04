@@ -7,6 +7,7 @@
     <style>
         * {
             font-family: sans-serif;
+            text-align: center;
         }
 
         div {
@@ -49,6 +50,9 @@
         let msgOutcome;
         let msgScore;
 
+        // message array
+        const msg = [msgSelections, msgOutcome, msgScore];
+
         // get computer choice (random)
         function getComputerChoice() {
             let genComputerChoice;
@@ -68,11 +72,10 @@
         // function to play a single round
         function playRound(humanChoice, computerChoice) {
             msgSelections = "P1:" + humanChoice + " : " + "CPU:" + computerChoice;
-            console.log(msgSelections);
+            // console.log(msgSelections);
 
             if (humanChoice == "SCISSORS" && computerChoice == "PAPER") { // SCISSORS WIN
                 msgOutcome = "YOU WIN!";
-                console.log(msgOutcome);
                 incrementHumanScore();
             } else if (humanChoice == "SCISSORS" && computerChoice == "ROCK") { // SCISSORS LOSE
                 msgOutcome = "Better luck next time!";
@@ -94,7 +97,32 @@
             }
 
             msgScore = humanScore + " : " + computerScore;
+            console.log(msgScore);
+
+            msg[0] = msgSelections;
+            msg[1] = msgOutcome;
+            msg[2] = msgScore;
         } 
+
+        // div for displaying results
+        const container = document.querySelector('.container');
+        const div = document.createElement('div');
+
+        let textSelections = document.createElement('p');
+        textSelections.textContent = msg[0];
+        let textOutcome = document.createElement('p');
+        textOutcome.textContent = msg[1];
+        let textScore = document.createElement('p');
+        textScore.textContent = msg[2];
+
+        
+
+        div.appendChild(textSelections);
+        div.appendChild(textOutcome);
+        div.appendChild(textScore);
+        container.appendChild(div);
+
+        container.removeChild(div);
 
         // get human choice (button)
         let btn = document.querySelector('#menu');
@@ -104,15 +132,15 @@
 
             switch(target.id) {
                 case 'scissors':
-                    console.log("scissors");
+                    // console.log("scissors");
                     playRound("SCISSORS", getComputerChoice());
                     break;
                 case 'paper':
-                    console.log("paper");
+                    // console.log("paper");
                     playRound("PAPER", getComputerChoice());
                     break;
                 case 'rock':
-                    console.log("rock");
+                    // console.log("rock");
                     playRound("ROCK", getComputerChoice());
                     break;
             }
@@ -121,17 +149,15 @@
             const container = document.querySelector('.container');
             const div = document.createElement('div');
 
-            const textSelections = document.createElement('p');
-            textSelections.textContent = msgSelections;
-            const textOutcome = document.createElement('p');
-            textOutcome.textContent = msgOutcome;
-            const textScore = document.createElement('p');
-            textScore.textContent = msgScore;
+            textSelections.textContent = msg[0];
+            textOutcome.textContent = msg[1];
+            textScore.textContent = msg[2];
 
             div.appendChild(textSelections);
             div.appendChild(textOutcome);
             div.appendChild(textScore);
             container.appendChild(div);
+
         })
     
     </script>
