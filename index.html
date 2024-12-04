@@ -4,14 +4,38 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
+    <style>
+        * {
+            font-family: sans-serif;
+        }
+
+        div {
+            margin: auto;
+            border: 0;
+            padding: 0;
+            width: 500px;
+        }
+
+        ul {            
+            list-style: none; 
+            display: flex; 
+            justify-content: center;
+            gap: 10px;
+        }
+
+        li {
+        }
+    </style>
 </head>
 <body>
 
-    <ul id="menu">
-        <li><button type="button" id="scissors">Scissors</button></li>
-        <li><button type="button" id="paper">Paper</button></li>
-        <li><button type="button" id="rock">Rock</button></li>
-    </ul>
+    <div class="container">
+        <ul id="menu">
+            <li><button type="button" id="scissors">Scissors</button></li>
+            <li><button type="button" id="paper">Paper</button></li>
+            <li><button type="button" id="rock">Rock</button></li>
+        </ul>
+    </div>
     
     <script>
         // console.log("Hello World");
@@ -19,6 +43,11 @@
         // player scores
         let humanScore = 0;
         let computerScore = 0;
+
+        // messages
+        let msgSelections;
+        let msgOutcome;
+        let msgScore;
 
         // get computer choice (random)
         function getComputerChoice() {
@@ -38,35 +67,34 @@
 
         // function to play a single round
         function playRound(humanChoice, computerChoice) {
-            console.log( "P1:" + humanChoice + " : " + "CPU:" + computerChoice );
+            msgSelections = "P1:" + humanChoice + " : " + "CPU:" + computerChoice;
+            console.log(msgSelections);
 
             if (humanChoice == "SCISSORS" && computerChoice == "PAPER") { // SCISSORS WIN
-                console.log("YOU WIN!");
+                msgOutcome = "YOU WIN!";
+                console.log(msgOutcome);
                 incrementHumanScore();
             } else if (humanChoice == "SCISSORS" && computerChoice == "ROCK") { // SCISSORS LOSE
-                console.log("Better luck next time!");
+                msgOutcome = "Better luck next time!";
                 incrementComputerScore();
             } else if (humanChoice == "PAPER" && computerChoice == "ROCK") { // PAPER WIN
-                console.log("YOU WIN!");
+                msgOutcome = "YOU WIN!";
                 incrementHumanScore();
             } else if (humanChoice == "PAPER" && computerChoice == "SCISSORS") { // PAPER LOSE
-                console.log("Better luck next time!");
+                msgOutcome = "Better luck next time!";
                 incrementComputerScore();
             } else if (humanChoice == "ROCK" && computerChoice == "SCISSORS") { // ROCK WIN
-                console.log("YOU WIN!");
+                msgOutcome = "YOU WIN!";
                 incrementHumanScore();
             } else if (humanChoice == "ROCK" && computerChoice == "PAPER") { // ROCK LOSE
-                console.log("Better luck next time!");
+                msgOutcome = "Better luck next time!";
                 incrementComputerScore();
             } else { // DRAW
-                console.log("It's a draw.");
+                msgOutcome = "It's a draw.";
             }
 
-            console.log(humanScore, computerScore);
-        }
-
-        let humanSelection;
-        let computerSelection;     
+            msgScore = humanScore + " : " + computerScore;
+        } 
 
         // get human choice (button)
         let btn = document.querySelector('#menu');
@@ -88,9 +116,24 @@
                     playRound("ROCK", getComputerChoice());
                     break;
             }
-        })
-        // div for displaying results
 
+            // div for displaying results
+            const container = document.querySelector('.container');
+            const div = document.createElement('div');
+
+            const textSelections = document.createElement('p');
+            textSelections.textContent = msgSelections;
+            const textOutcome = document.createElement('p');
+            textOutcome.textContent = msgOutcome;
+            const textScore = document.createElement('p');
+            textScore.textContent = msgScore;
+
+            div.appendChild(textSelections);
+            div.appendChild(textOutcome);
+            div.appendChild(textScore);
+            container.appendChild(div);
+        })
+    
     </script>
 
 </body>
